@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import Form from "./Form";
+import Form, { getErrors } from "./Form";
+// import RelativeForm from './RelativeForm'
 
 class App extends Component {
 
     state = { 
+        errors: {},
         submitting: false, 
         pristine: { 
             lastname: "Smith", 
@@ -27,7 +29,7 @@ class App extends Component {
     }
     
     render = () => {
-        const { current, submitting, error, message, valid } = this.state
+        const { current, submitting, error, message, valid, errors } = this.state
 
         return (
             <div className="App">
@@ -39,14 +41,25 @@ class App extends Component {
                     submitting={submitting} 
                     error={error}
                     message={message} 
-                    valid={valid} />
+                    valid={valid} 
+                    errors={errors} />
+                {/*<RelativeForm
+                    current={current}
+                    onChange={this.onChange} 
+                    onReset={this.onReset} 
+                    onSubmit={this.onSubmit} 
+                    submitting={submitting} 
+                    error={error}
+                    message={message} 
+                    valid={valid} />                
+                />*/}
             </div>
         )
     }
 
     onChange = (id, value, validation) => {
-        debugger
-        this.setState({ current: Object.assign({}, this.state.current, { [id]: value }), error: getFieldError(value, this.state.current, validation), message: "" })
+        this.setState({ current: Object.assign({}, this.state.current, { [id]: value }), error: getFieldError(value, this.state.current, validation), message: "" },
+            () => this.setState({ errors: getErrors(this.state.current) }))
     }
     
     onReset = () => this.setState({ current: clone(this.state.pristine), error: "", message: "" })

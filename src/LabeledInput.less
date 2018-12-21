@@ -1,0 +1,93 @@
+@import "~shared/style/constants.less";
+@import "../Common/PatientSpaceCommon.less";
+
+@inputFontSize: 14px;
+
+.labeled-input {
+    float: left;
+    position: relative;
+    padding-right: 7px;
+    padding-left: 7px;
+
+    .errors {
+        color: red;
+        font-size: 11px;
+        color: red;
+        display: none;
+    }
+
+    label, .label {
+        color: #c4c4c5;
+        font-size: 11px;
+        margin-bottom: 0;
+        float: left;
+        margin-right: 10px;
+    }
+
+    .edit-btn {
+        background-image: url(../img/edit-btn.png);
+        width: 26px;
+        height: 24px;
+        position: absolute;
+        right: 20px;
+        top: 7px;
+        border: none;
+    }
+
+    &.transparent-fields {
+        input {
+            background-image: none !important;
+            border-bottom: 1px solid @inputBorderColor;
+            border-top: none;
+            box-shadow: none;
+            border-left: 0;
+            border-right: 0;
+            border-radius: 0;
+            padding: 0;
+            line-height: 12px;
+            height: 25px !important;
+            font-size: @inputFontSize;
+            font-family: dokbold;
+            letter-spacing: 1px;
+            position: relative;
+            top: -2px;
+
+        }
+    }
+
+    &.readonly {
+        label, .label {
+            margin-bottom: 1px;
+        }
+        .value {
+            font-family: dokbold;
+            font-size: @inputFontSize;
+            letter-spacing: 1px;
+            clear: both;
+            border-bottom: 1px solid @inputBorderColor;
+            padding-bottom: 1px;
+            min-height: 22px;
+        }
+    }
+
+    .show-password-btn {
+        cursor: pointer;
+        background-image: url(../img/show-password.png);
+        width: 29px;
+        height: 24px;
+        position: absolute;
+        right: 33px;
+        top: 12px;
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 0px 5px;
+    }
+
+    &.capital-labels {
+        label, .label {
+            text-transform: uppercase;
+            color: #9e9ea2;
+        }
+    }
+
+}
